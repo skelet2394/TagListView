@@ -199,6 +199,15 @@ open class TagListView: UIView {
         }
     }
     
+    open var textAttributes: [NSAttributedString] = [] {
+        didSet {
+            defer { rearrangeViews() }
+            tagViews.forEach {
+                $0.textattributes = textAttributes
+            }
+        }
+    }
+    
     @IBOutlet open weak var delegate: TagListViewDelegate?
     
     open private(set) var tagViews: [TagView] = []
@@ -343,6 +352,7 @@ open class TagListView: UIView {
         tagView.paddingX = paddingX
         tagView.paddingY = paddingY
         tagView.textFont = textFont
+        tagView.textAttributes = textAttributes
         tagView.removeIconLineWidth = removeIconLineWidth
         tagView.removeButtonIconSize = removeButtonIconSize
         tagView.enableRemoveButton = enableRemoveButton

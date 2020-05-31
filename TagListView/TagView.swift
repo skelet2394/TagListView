@@ -87,6 +87,14 @@ open class TagView: UIButton {
         }
     }
     
+    open var textAttributes: [NSAttributedString] = [] {
+        didSet {
+            let attributedString = NSMutableAttributedString(attributedString: titleLabel.attributedText ?? .init())
+            attributedString.addAttributes([:], range: NSRange(0..<attributedString.length))
+            titleLabel.attributedText = attributedString
+        }
+    }
+    
     private func reloadStyles() {
         if isHighlighted {
             if let highlightedBackgroundColor = highlightedBackgroundColor {
@@ -185,7 +193,7 @@ open class TagView: UIButton {
     // MARK: - layout
 
     override open var intrinsicContentSize: CGSize {
-        var size = titleLabel?.text?.size(withAttributes: [NSAttributedString.Key.font: textFont]) ?? CGSize.zero
+        var size = titleLabel?.text?.size(withAttributes: textAttributes.isEmpty ? [NSAttributedString.Key.font: textFont] : textAttributes) ?? CGSize.zero
         size.height = textFont.pointSize + paddingY * 2
         size.width += paddingX * 2
         if size.width < size.height {
