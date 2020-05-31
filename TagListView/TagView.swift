@@ -91,7 +91,7 @@ open class TagView: UIButton {
         didSet {
             let attributedString = NSMutableAttributedString(attributedString: titleLabel?.attributedText ?? .init())
             attributedString.addAttributes([:], range: NSRange(0..<attributedString.length))
-            titleLabel.attributedText = attributedString
+            titleLabel?.attributedText = attributedString
         }
     }
     
