@@ -199,11 +199,11 @@ open class TagListView: UIView {
         }
     }
     
-    open var textAttributes: [NSAttributedString] = [] {
+    open var textAttributes: [NSAttributedString.Key: Any] = [] {
         didSet {
             defer { rearrangeViews() }
             tagViews.forEach {
-                $0.textattributes = textAttributes
+                $0.textAttributes = textAttributes
             }
         }
     }
