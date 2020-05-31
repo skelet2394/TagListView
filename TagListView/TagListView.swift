@@ -327,7 +327,7 @@ open class TagListView: UIView {
         return CGSize(width: frame.width, height: height)
     }
     
-    private func createNewTagView(_ title: String) -> TagView {
+    open func createNewTagView(_ title: String) -> TagView {
         let tagView = TagView(title: title)
         
         tagView.textColor = textColor
