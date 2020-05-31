@@ -199,7 +199,7 @@ open class TagListView: UIView {
         }
     }
     
-    open var textAttributes: [NSAttributedString.Key: Any] = [] {
+    open var textAttributes: [NSAttributedString.Key: Any] = [:] {
         didSet {
             defer { rearrangeViews() }
             tagViews.forEach {
